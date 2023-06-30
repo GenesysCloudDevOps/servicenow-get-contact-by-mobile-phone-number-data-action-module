@@ -14,7 +14,7 @@ module "data_action" {
 }
 ```
 
-`Note:` The remote module for creating this data action integration can be found [here](https://github.com/GenesysCloudDevOps/ "Opens github.com/GenesysCloudDevOps/")
+`Note:` The remote module for creating this data action integration can be found [here](https://github.com/GenesysCloudDevOps/custom-rest-integration-module "Opens github.com/GenesysCloudDevOps/custom-rest-integration-module")
 
 ## Requirements
 

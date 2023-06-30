@@ -1,0 +1,61 @@
+{
+  "name": "Get Contact by Mobile Phone Number",
+  "integrationType": "custom-rest-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "https://${input.Domain}.service-now.com/api/now/table/sys_user?mobile_phone=$esc.url($input.PHONE_NUMBER)",
+      "requestType": "GET",
+      "headers": {},
+      "requestTemplate": "{}"
+    },
+    "response": {
+      "translationMap": {
+        "length": "$.result.length()",
+        "SYSID": "$.result[0].sys_id"
+      },
+      "translationMapDefaults": {},
+      "successTemplate": "{\r\n\"SYSID\": ${SYSID},\r\n\"length\": ${length}\r\n}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Developer ServiceNow",
+        "description": "Test Action for Developer ServiceNow. Find UserID record based on mobile_phone field",
+        "type": "object",
+        "required": [
+          "PHONE_NUMBER"
+        ],
+        "properties": {
+          "PHONE_NUMBER": {
+            "description": "CustomLookUpValue",
+            "type": "string"
+          },
+          "Domain": {
+            "type": "string",
+            "description": "The Service Now instance domain e.g. https://*domain*.service-now.com"
+          }
+        }
+      }
+    },
+    "output": {
+      "successSchema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Service Now Response",
+        "description": "Service Now Response. UserID",
+        "type": "object",
+        "properties": {
+          "SYSID": {
+            "type": "string"
+          },
+          "length": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "secure": false
+}
